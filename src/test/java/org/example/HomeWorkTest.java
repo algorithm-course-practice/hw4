@@ -10,10 +10,26 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HomeWorkTest {
 
     HomeWork homeWork = new HomeWork();
+
+    @Test
+    void add() {
+        for (int i = 0; i < 10; i++) {
+            homeWork.add(new Ticket("pension"));
+            homeWork.add(new Ticket("other"));
+        }
+
+        Ticket ticket = homeWork.next();
+        while (homeWork.size() > 0){
+            Ticket ticket2 = homeWork.next();
+            assertTrue(ticket.compare(ticket2));
+            ticket = ticket2;
+        }
+    }
 
     @Test
     void managerFabric() {
