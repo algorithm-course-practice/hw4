@@ -2,13 +2,11 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HomeWorkTest {
@@ -17,6 +15,22 @@ class HomeWorkTest {
 
     @Test
     void managerFabric() {
+
+        final int CAPACITY = 1 << 6;
+        TicketManager ticketManager = homeWork.managerFabric(CAPACITY);
+
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                ticketManager.add(new Ticket("pension"));
+            } else {
+                ticketManager.add(new Ticket(RandomString()));
+            }
+        }
+        System.out.println(ticketManager.print());
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(ticketManager.next());
+        }
     }
 
     @Test
@@ -46,5 +60,16 @@ class HomeWorkTest {
                 .collect(Collectors.toList());
     }
 
+    private String RandomString() {
+        int leftLimit = 65; // numeral 'A'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
 
+        return random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+    }
 }
