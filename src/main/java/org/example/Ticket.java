@@ -29,4 +29,11 @@ public class Ticket {
     public Ticket(String type) {
         this.type = type;
     }
+
+    public boolean compare(Ticket ticket) {
+        if (this.type.equals(ticket.type)){
+            return this.registerTime.isBefore(ticket.registerTime);
+        }
+        return !ticket.type.equals("pension");
+    }
 }

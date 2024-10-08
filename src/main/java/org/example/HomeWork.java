@@ -4,14 +4,13 @@ import java.util.*;
 
 
 public class HomeWork {
-
     /**
      * <h1>Задание 1.</h1>
      * Требуется реализовать интерфейс TicketManager в соответствии с JavaDoc описанием.
      * Реализации очередей из стандартной библиотеки не используем.
      */
     public TicketManager managerFabric() {
-        return null;
+        return new TicketManagerImpl();
     }
 
 
@@ -29,5 +28,4 @@ public class HomeWork {
     public List<Integer> check(List<String> records){
         return null;
     }
-
 }
