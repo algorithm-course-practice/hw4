@@ -15,24 +15,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class HomeWorkTest {
 
     HomeWork homeWork = new HomeWork();
-
-    @Test
-    void add() {
-        for (int i = 0; i < 10; i++) {
-            homeWork.add(new Ticket("pension"));
-            homeWork.add(new Ticket("other"));
-        }
-
-        Ticket ticket = homeWork.next();
-        while (homeWork.size() > 0){
-            Ticket ticket2 = homeWork.next();
-            assertTrue(ticket.compare(ticket2));
-            ticket = ticket2;
-        }
-    }
+    TicketManager ticketManager = homeWork.managerFabric();
 
     @Test
     void managerFabric() {
+        assertEquals(null, ticketManager.next());
+
+        for (int i = 0; i < 10; i++) {
+            ticketManager.add(new Ticket("pension"));
+            ticketManager.add(new Ticket("other"));
+        }
+
+        Ticket ticket = ticketManager.next();
+        while (ticketManager.size() > 0){
+            Ticket ticket2 = ticketManager.next();
+            assertTrue(ticket.compare(ticket2));
+            ticket = ticket2;
+        }
     }
 
     @Test
