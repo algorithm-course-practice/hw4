@@ -10,6 +10,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class HomeWorkTest {
 
@@ -17,6 +18,15 @@ class HomeWorkTest {
 
     @Test
     void managerFabric() {
+        TicketManager ticketManager = homeWork.managerFabric();
+
+        // Получаем талоны в порядке приоритета
+        assertEquals(2, ticketManager.next().id);
+        assertEquals(4, ticketManager.next().id);
+        assertEquals(1, ticketManager.next().id);
+        assertEquals(3, ticketManager.next().id);
+        assertNull(ticketManager.next());
+
     }
 
     @Test

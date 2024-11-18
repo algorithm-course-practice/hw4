@@ -11,7 +11,21 @@ public class HomeWork {
      * Реализации очередей из стандартной библиотеки не используем.
      */
     public TicketManager managerFabric() {
-        return null;
+        TicketManager ticketManager = new TicketManagerImpl();
+
+        // Создаем талоны
+        Ticket t1 = new Ticket("other");
+        Ticket t2 = new Ticket("pension");
+        Ticket t3 = new Ticket("other");
+        Ticket t4 = new Ticket("pension");
+
+        // Регистрируем талоны
+        ticketManager.add(t1);
+        ticketManager.add(t2);
+        ticketManager.add(t3);
+        ticketManager.add(t4);
+
+        return ticketManager;
     }
 
 
